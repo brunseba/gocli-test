@@ -1,7 +1,16 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
-name: Setup Go environment
+name: buildGoApp
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
   uses: actions/setup-go@v3.4.0
   with:
     # The Go version to download (if necessary) and use. Supports semver spec and ranges.
@@ -18,16 +27,6 @@ name: Setup Go environment
     cache-dependency-path: # optional
     # Target architecture for Go to use. Examples: x86, x64. Will use system architecture by default.
     architecture: # optional
-
-name: buildGoApp
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
 
   build:
     runs-on: ubuntu-latest
